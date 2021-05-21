@@ -42,7 +42,7 @@ export default {
             if(this.login.length !== 0 && this.password.length !== 0){
                 const credential = window.btoa(this.login + ':' +  this.password);
                 let h = new Headers();
-                const url = 'http://localhost:90/gsb/user/' + this.login.toLowerCase();
+                const url = 'http://localhost:90/gsb/role/' + this.login.toLowerCase();
                 h.append('Content-Type', 'Application/json; charset=utf-8');
                 h.append('Authorization', 'Basic ' + credential);
                 h.append('credentials', 'include');
@@ -64,8 +64,9 @@ export default {
                     }   
                 })
                 .then((data) => {
-                    this.$store.dispatch('user', data.login)
-                    console.log(data.login)
+                    this.$store.dispatch('user', data)
+                    this.$store.dispatch('credential', credential)
+                    console.log(data)
                 })
                 .catch((err) => {
                     console.log(err)

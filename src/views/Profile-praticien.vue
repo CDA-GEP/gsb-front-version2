@@ -14,9 +14,10 @@
                     <img src="@/assets/avatar-praticien.png" class="card-img-top avatar-show-prat" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ prenom }} {{ nom }}</h5>
-                        <p class="card-text">{{ specialite }}</p>
+                        <!-- <p class="card-text">{{ specialite }}</p> -->
                         <p class="card-text"><em>{{ adresse }} {{ postal }} {{ ville }}</em></p>
                         <a href="#" class="btn btn-warning btn-show">Modifier les informations</a>
+                        <a href="#" class="btn btn-warning btn-show">Créer un rapport</a>
                         <a href="#" class="btn btn-danger btn-show">Supprimer ce praticien</a>
                     </div>
                 </div>
@@ -26,25 +27,27 @@
                         <hr>
                         <strong>Email: </strong><span>soins-medecin-sud@gmail.com</span>
                         <hr>
-                        <strong>Spécialité: </strong><span>{{ specialite }}</span>
+                        <!-- <strong>Spécialité: </strong><span>{{ specialite }}</span> -->
                         <hr>
                         <strong>Adresse du cabinet: </strong><span>{{adresse}} {{ postal }} {{ ville }}</span>
                     </div>
                 </div>
             </div>
       </div>
-     <prat-map class="mapAllPrat" v-if="pratInfo" v-bind:pratData="[pratInfo]" id="mapid"></prat-map>
+     <map-prat class="mapAllPrat" v-if="pratInfo" v-bind:pratData="[pratInfo]"></map-prat>
   </div>
 </template>
 
 <script>
 import formulairePraticien from '@/components/FormulairePraticien'
-import pratMap from '@/components/Map'
+//import pratMap from '@/components/Map'
+import mapPrat from '@/components/Mappraticien'
 export default {
     name: 'page-profile',
     components:{
         formulairePraticien,
-        pratMap
+        //pratMap,
+        mapPrat
     },
     data(){
         return{
@@ -82,8 +85,6 @@ export default {
             this.visited = data.visite
             this.specialite = data.specialite.specialite
             this.pratInfo = data
-            console.log(data)
-            ;
         })
     }
 

@@ -21,10 +21,11 @@
         </div>
         </div>
         <div class="col-auto">
-        <div class="input-group">
-            <div class="input-group-text"><i class="fas fa-hand-holding-medical"></i></div>
-            <input type="text" v-model="specialite" class="form-control" id="specialite" autocomplete="off" placeholder="Ex: Dentiste">
-        </div>
+        <select class="form-select" v-model="specialite" id="specialite">
+            <option v-bind:value="spe.id" v-for="spe in specialite_praticien" v-bind:key="spe.id">
+                {{ spe.specialiteLibelle }}
+            </option>
+        </select>
         </div>
         <div class="col-auto">
         <label class="visually-hidden" for="autoSizingSelect">Preference</label>
@@ -53,6 +54,9 @@ export default {
             urlAlgolia: 'https://places-dsn.algolia.net/1/places/query',
             villes: [],
             showWindowCity: false,
+            url_specialite: 'http://localhost:90/gsb/specialite',
+            specialite_praticien: []
+
         }
     },
     props:{
@@ -60,6 +64,11 @@ export default {
             type: Boolean,
             default: true 
         }   
+    },
+    computed:{
+        getCredentials: function(){
+            return this.$store.getters.getCredentials
+        }
     },
     methods:{
         getCity: function(city){
@@ -82,6 +91,7 @@ export default {
             }
         },
         getData: async function(){
+            localStorage.removeItem('praticien')
             this.url = 'http://localhost:90/gsb/praticien?'
             if(this.ville !== ''){
                 this.url += 'ville=' + this.ville
@@ -89,9 +99,14 @@ export default {
             if(this.visite !== ''){
                 this.url += '&visite=' + this.visite
             }
+            if(this.specialite !== ''){
+                this.url += '&specialiteid=' + this.specialite
+            }
+            console.log(this.url)
             await fetch(this.url, {
                 headers:{
-                    'Content-type': 'Application/json; charset=utf-8'
+                    'Content-type': 'Application/json; charset=utf-8',
+                    'Authorization': 'Basic ' + this.getCredentials
                },
                credentials: 'include'
             })
@@ -106,7 +121,7 @@ export default {
             })
             .then((data) => {
                 this.$store.dispatch('praticien', data)
-                //console.log(data)
+                console.log(data)
             })
             .catch((err) => {
                 console.log(err)
@@ -114,13 +129,31 @@ export default {
             
         }
     },
-    created(){
+    async created(){
         this.shad = this.shadow
+        //faire un requête pour aller cherche les spécialités
+        // et les afficher dans la vue via un boucle
+        await fetch(this.url_specialite, {
+            headers:{
+                'Content-type': 'Application/json; charset=utf-8',
+                'Authorization': 'Basic ' + this.getCredentials
+            }
+        })
+        .then((response) => {
+            if(response.status === 401){
+                console.log('User pas autorisé')
+            }else{
+                return response.json()
+            }
+        })
+        .then((data) => {
+            this.specialite_praticien = data
+        })
     }
 }
 </script>
 
-<style>
+<style scoped>
 .input-group-text{
   background-color: white;
 }

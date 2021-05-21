@@ -14,19 +14,22 @@
                 </div>    
             </div> 
       </div>
-     <prat-map class="mapAllPrat" id="mapid" v-if="getPraticien" v-bind:pratData="getPraticien" ></prat-map>
+     <!-- <prat-map class="mapAllPrat" id="mapid" v-if="getPraticien" v-bind:pratData="getPraticien" ></prat-map> -->
+     <map-prat class="mapAllPrat" v-if="getPraticien" v-bind:pratData="getPraticien"></map-prat>
   </div>
 </template>
 
 <script>
 import formulairePraticien from '@/components/FormulairePraticien'
-import pratMap from '@/components/Map'
+//import pratMap from '@/components/Map'
 import cardPraticien from '@/components/Card'
+import mapPrat from '@/components/Mappraticien'
 export default {
     components:{
         formulairePraticien,
-        pratMap,
+        //pratMap,
         cardPraticien,
+        mapPrat
     },
     computed:{
         getPraticien: function(){

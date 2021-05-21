@@ -6,7 +6,7 @@
                 <img src="@/assets/avatar-praticien.png" class="avatar" alt="">
                 <div class="nom">{{ praticien.nom }} {{ praticien.prenom }}</div>
             </div>            
-            <div class="specialite">{{ praticien.specialite.specialite }}</div>
+            <div class="specialite">{{ praticien.specialite.specialiteLibelle }}</div>
             <div class="visite">{{ visite }}</div>
             <div class="localite"><i class="fas fa-street-view"></i> {{ praticien.ville }}</div>
         </router-link>

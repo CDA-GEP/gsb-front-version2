@@ -5,6 +5,7 @@ import Home from "@/views/Home.vue";
 import Login from "@/views/Login"
 import Praticien from "@/views/Praticien"
 import Profile from "@/views/Profile-praticien"
+import store from "../store"
 
 const routes = [
     {
@@ -21,16 +22,37 @@ const routes = [
         path: "/praticien",
         name: "praticien",
         component: Praticien,
+        beforeEnter: (to, from, next) => {
+            if (store.state.user.login === null) {
+                next('/login')
+            }else{
+                next() 
+            }
+        }
     },
     {
         path: "/praticien/:id",
         name: "Profile",
         component: Profile,
+        beforeEnter: (to, from, next) => {
+            if(store.state.user.login === null){
+                next('/login')
+            }else{
+                next()
+            }
+        }
     },
     {
         path: "/about",
         name: "About",
         component: About,
+        beforeEnter: (to, from , next) => {
+            if (store.state.user === null){
+                next('/login')
+            }else{
+                next()
+            }
+        }
     }
 ];
 

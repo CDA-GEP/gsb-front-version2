@@ -1,7 +1,12 @@
 <template>
 <div class="formulaire center">
   <div>
-    <h1 v-if="getUser !== null">Bonjour {{ getUser }}</h1>
+    <h2 v-if="getUser !== null">Bonjour {{ getUser[0].login }}.
+      Vous êtes connecté en tant que : 
+      <p v-if="getUser[0].role === 'VISITEUR'">visiteur médical</p> 
+      <p v-if="getUser[0].role === 'RESHUMAINE'">ressource humaine</p>
+    </h2>
+
     <h3>Trouvez votre praticien</h3>
     <formulairePraticien></formulairePraticien>
   </div>
@@ -24,7 +29,7 @@ export default {
 
 <style scoped>
 
-h1, h3{
+h2, h3{
   color: white;
   font-weight: bold;
   text-align: center;

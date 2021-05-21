@@ -1,6 +1,6 @@
 <template>
-  <div id="map">
-      ceci est ma map
+  <div id="mymap">
+      
   </div>
 </template>
 
@@ -15,17 +15,29 @@ export default {
         lon: '',
         url: '',
         promiseArray: [],
+        //adresses: [],
         res: '',
         i: 0
       }
     },
-    created: async function(){
+    // computed: {
+    //   getCity: function(){
+    //     return this.$store.getters.getPraticien
+    //   }
+    // },
+    mounted: async function(){
+    //   const dataFromPrat = Array.from(this.getCity)
+    //   dataFromPrat.forEach((item) => {
+    //     this.adresses.push(item.adresse + ' ' + item.codePostal + ' ' + item.ville)
+    //   })
+      
+    //  const arrayOfAdresses = Array.from(this.adresses)
       if (this.mymap !== '') {
-        console.log('il faut remove la map')
-        this.mymap.remove();
-    }
+          this.mymap.remove();
+      }
       this.pratData.forEach((element) => {
         let adresse = element.adresse + ' ' + element.codePostal + ' ' + element.ville
+        console.log(element)
           this.url = `https://api.mapbox.com/geocoding/v5/mapbox.places/` + adresse +`.json?access_token=pk.eyJ1IjoiYWNhcmRuaWNvbGFzOTEiLCJhIjoiY2swcnloczN0MGJneDNjbzB1am9ob3cycCJ9.5JXyVWCo9csiDd-U5bvejw`;
           this.promiseArray.push(fetch(this.url).then(response => response.json()))
       });
@@ -40,7 +52,7 @@ export default {
           .bindPopup(`
           <div class="text-center">
           <h6>` + this.pratData[this.i].prenom + ' ' + this.pratData[this.i].nom +`</h6>
-          <p>` + this.pratData[this.i].specialite.specialite + `</p>
+          <p>` + this.pratData[this.i].specialite + `</p>
           </div>
           `)
           .openPopup();
@@ -90,18 +102,23 @@ export default {
       //     accessToken: 'pk.eyJ1IjoiYWNhcmRuaWNvbGFzOTEiLCJhIjoiY2swcnloczN0MGJneDNjbzB1am9ob3cycCJ9.5JXyVWCo9csiDd-U5bvejw'
       //   }).addTo(this.mymap);
       // }  
+   },
+   beforeUnmount(){
+     if(this.mymap){
+       this.mymap.remove()
+     }
    }
 }
 </script>
 
 <style scoped>
-#map{
+/* #mymap{
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   font-size: 30px;
   color: grey;
-}
+} */
 
 </style>
