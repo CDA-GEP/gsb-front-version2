@@ -5,7 +5,7 @@
         <div class="">  
             <div class="container resultat">
                 <div class="row">
-                     <card-praticien class="col-xs-12 col-md-6 center"
+                     <card-praticien class="col-xs-12 col-md-4 center"
                         v-for="praticien in getPraticien" 
                         v-bind:key="praticien.id"
                         v-bind:praticien="praticien"
@@ -14,8 +14,7 @@
                 </div>    
             </div> 
       </div>
-     <!-- <prat-map class="mapAllPrat" id="mapid" v-if="getPraticien" v-bind:pratData="getPraticien" ></prat-map> -->
-     <map-prat class="mapAllPrat" v-if="getPraticien" v-bind:pratData="getPraticien"></map-prat>
+     <!-- <map-prat class="mapAllPrat" v-if="getPraticien" v-bind:pratData="getPraticien"></map-prat> -->
   </div>
 </template>
 
@@ -23,13 +22,13 @@
 import formulairePraticien from '@/components/FormulairePraticien'
 //import pratMap from '@/components/Map'
 import cardPraticien from '@/components/Card'
-import mapPrat from '@/components/Mappraticien'
+//import mapPrat from '@/components/Mappraticien'
 export default {
     components:{
         formulairePraticien,
         //pratMap,
         cardPraticien,
-        mapPrat
+        //mapPrat
     },
     computed:{
         getPraticien: function(){
@@ -50,7 +49,7 @@ export default {
     }
 
     .main-frame{
-        width: 70%;
+        width: 100%;
         
     }
 

@@ -8,7 +8,7 @@
         <div class="location-autocomplete col-auto">
         <div class="input-group">
             <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
-            <input type="text" v-on:keyup="autocomplete" v-model="ville" class="form-control" id="localite" autocomplete="off" placeholder="Ex: Marseille">     
+            <input type="text" v-on:keyup="autocomplete" v-model="ville" class="form-control" id="localite" autocomplete="off" placeholder="Ex: Marseille" required>     
         </div>
         <div class="card card-autocomplete" v-if="showWindowCity">
             <div class="card-body">

@@ -112,13 +112,8 @@ export default {
 </script>
 
 <style scoped>
-/* #mymap{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 30px;
-  color: grey;
-} */
+ /* #mymap{
+  width: 40%;
+}  */
 
 </style>

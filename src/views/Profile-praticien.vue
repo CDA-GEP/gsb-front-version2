@@ -65,7 +65,8 @@ export default {
         fetch('http://localhost:90/gsb/praticien/' + this.$route.params.id, {
             methods: 'GET',
             headers: {
-                "Content-type": "Application/json"
+                "Content-type": "Application/json",
+                "Authorization": "Basic " + this.$store.getters.getCredentials
             },
             credentials: 'include'
         })
@@ -99,6 +100,10 @@ export default {
     left: 15px;
     font-size: 30px;
 }
+
+/* .main-frame-prat{
+    width: 70%;
+} */
 
 .card-bloc{
     display: flex;
