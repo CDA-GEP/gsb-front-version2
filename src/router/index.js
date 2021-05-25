@@ -12,6 +12,13 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
+        // beforeEnter: (to, from, next) => {
+        //     if (store.getters.getUserName === null){
+        //         next('/login')
+        //     }else{
+        //         next()
+        //     }
+        // }
     },
     {
         path: "/login",

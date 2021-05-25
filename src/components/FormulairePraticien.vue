@@ -120,13 +120,12 @@ export default {
                } 
             })
             .then((data) => {
-                this.$store.dispatch('praticien', data)
-                console.log(data)
+               this.$store.dispatch('praticien', data)
             })
             .catch((err) => {
                 console.log(err)
             })
-            
+            this.ville = ''
         }
     },
     async created(){

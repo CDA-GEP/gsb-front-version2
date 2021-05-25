@@ -4,15 +4,20 @@
         <formulaire-praticien v-bind:shadow="false" class="form-prat"></formulaire-praticien>
         <div class="">  
             <div class="container resultat">
-                <div class="row">
-                     <card-praticien class="col-xs-12 col-md-4 center"
-                        v-for="praticien in getPraticien" 
-                        v-bind:key="praticien.id"
-                        v-bind:praticien="praticien"
+                <div v-if="getPraticien && getPraticien.length">
+                    <div class="row">
+                        <card-praticien class="col-xs-12 col-md-4 center"
+                            v-for="praticien in getPraticien" 
+                            v-bind:key="praticien.id"
+                            v-bind:praticien="praticien"
                         ></card-praticien>
                     </div>
-                </div>    
-            </div> 
+                </div>
+                <div v-else>
+                    <h3 class="no-result">Aucun résultat...</h3> 
+                </div>
+            </div>    
+        </div> 
       </div>
      <!-- <map-prat class="mapAllPrat" v-if="getPraticien" v-bind:pratData="getPraticien"></map-prat> -->
   </div>
@@ -51,6 +56,12 @@ export default {
     .main-frame{
         width: 100%;
         
+    }
+
+    .no-result{
+        font-size: 48px;
+        font-weight: bold;
+        color: gray;
     }
 
     .mapAllPrat{

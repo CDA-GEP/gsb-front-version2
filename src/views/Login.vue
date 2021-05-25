@@ -66,7 +66,7 @@ export default {
                 .then((data) => {
                     this.$store.dispatch('user', data)
                     this.$store.dispatch('credential', credential)
-                    console.log(data)
+                    console.log('data from login ' + data)
                 })
                 .catch((err) => {
                     console.log(err)

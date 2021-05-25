@@ -37,7 +37,6 @@ export default {
       }
       this.pratData.forEach((element) => {
         let adresse = element.adresse + ' ' + element.codePostal + ' ' + element.ville
-        console.log(element)
           this.url = `https://api.mapbox.com/geocoding/v5/mapbox.places/` + adresse +`.json?access_token=pk.eyJ1IjoiYWNhcmRuaWNvbGFzOTEiLCJhIjoiY2swcnloczN0MGJneDNjbzB1am9ob3cycCJ9.5JXyVWCo9csiDd-U5bvejw`;
           this.promiseArray.push(fetch(this.url).then(response => response.json()))
       });

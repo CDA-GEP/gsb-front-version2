@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state:{
         user: {
-            login: localStorage.getItem('userName'),
+            login: null,
             cryptedPass: localStorage.getItem('credentials')
         },
         praticien: localStorage.getItem('praticien')

@@ -68,6 +68,7 @@ export default {
 .nom{
     /* position: absolute; */
     padding: 20px;
+    font-weight: bold;
     
 }
 

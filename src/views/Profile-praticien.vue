@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <strong>Prénom et nom: </strong><span>{{ prenom }} {{ nom }}</span>
                         <hr>
-                        <strong>Email: </strong><span>soins-medecin-sud@gmail.com</span>
+                        <strong>Email: </strong><span>{{ email }}</span>
                         <hr>
                         <!-- <strong>Spécialité: </strong><span>{{ specialite }}</span> -->
                         <hr>
@@ -54,6 +54,7 @@ export default {
             ville: '',
             postal: '',
             nom: '',
+            email: '',
             prenom: '',
             specialite: '',
             adresse: '',
@@ -82,6 +83,7 @@ export default {
             this.postal = data.codePostal
             this.adresse = data.adresse
             this.nom = data.nom
+            this.email = data.email
             this.prenom = data.prenom
             this.visited = data.visite
             this.specialite = data.specialite.specialite

@@ -18,6 +18,7 @@
             <div>
 
             </div>
+            
             <div v-if="getUser !== null">
                 <img class="avatar" src="@/assets/avatar-visiteur.jpeg" alt="">
                 <strong class="user">{{ getUser[0].login }}</strong>
@@ -26,7 +27,7 @@
                 </button>
                 <button class="btn btn-connect" @click="disconnect"><i class="fas fa-sign-out-alt"></i> Se déconnecter</button>
             </div>
-                <router-link class="btn btn-connect" v-if="getUser === null" to="/login"><i class="far fa-user"></i> Se connecter</router-link>
+                <router-link class="btn btn-connect" v-else to="/login"><i class="far fa-user"></i> Se connecter</router-link>
             </div>
         </div>
         </nav>
@@ -77,7 +78,7 @@
                             </div>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-warning" data-bs-dismiss="modal">Annulé</button>
+                                <button class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
                                 <button type="submit" class="btn btn-primary add-prat">Ajouter ce praticien</button>
                             </div>
                         </form>
@@ -119,7 +120,7 @@ export default {
                 console.log(data);
             })
             .then((err) => {
-                console.log('adde prat: ' + err)
+                console.log('add prat: ' + err)
             })
         },
         disconnect: function(){
